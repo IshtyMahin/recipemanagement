@@ -18,7 +18,7 @@ class Ratings(models.Model):
 
     rating = models.IntegerField()
     recipe = models.ForeignKey(Recipes,on_delete=models.CASCADE)
-    user = models.ForeignKey(models, on_delete=models.CASCADE)
+    user = models.ForeignKey(Member, on_delete=models.CASCADE)
     
     
     
@@ -26,6 +26,6 @@ class Comments(models.Model):
     comment = models.TextField()
     comment_time = models.DateTimeField(auto_now_add=True)
     recipe = models.ForeignKey(Recipes,on_delete=models.CASCADE)
-    user = models.ForeignKey(models, on_delete=models.CASCADE)
+    user = models.ForeignKey(Member, on_delete=models.CASCADE)
     
     
