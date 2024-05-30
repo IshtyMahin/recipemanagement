@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from .models import Ingredients, Recipes, Ratings, Comments
-from member.serializers import MemberSerializer
+from member.serializers import UserSerializer
 
 
 class IngredientSerializer(serializers.ModelSerializer):
@@ -10,7 +10,7 @@ class IngredientSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class RecipeSerializer(serializers.ModelSerializer):
-    chief = MemberSerializer(read_only=True)
+    chief = UserSerializer(read_only=True)
     ingredients = IngredientSerializer(many=True)
 
     class Meta:
@@ -26,14 +26,14 @@ class RecipeSerializer(serializers.ModelSerializer):
         return recipe
 
 class RatingSerializer(serializers.ModelSerializer):
-    user = MemberSerializer(read_only=True)
+    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Ratings
         fields = '__all__'
 
 class CommentSerializer(serializers.ModelSerializer):
-    user = MemberSerializer(read_only=True)
+    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Comments
